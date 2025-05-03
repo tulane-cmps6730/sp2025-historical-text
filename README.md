@@ -1,4 +1,5 @@
-# CMPS 6730 Sample Project
+# Historical Text Generator
+![image](https://github.com/user-attachments/assets/65fd838f-83df-4f7c-b2c7-25c082378a72)
 
 This repository contains starter code for the final project in CMPS 4730/6730: Natural Language Processing at Tulane University.
 
