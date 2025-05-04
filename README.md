@@ -20,12 +20,45 @@ I did this by creating mini "loader" scripts for each of my sources, and a main 
 During the process of appendage, the csv is structured such that the metadata that is collected from the loaders are placed into columns. For example, when reading an article about Ancient Rome on Wikipedia, the loader is able to extract the year, the region, and the actual text itself, all in their designated [YEAR], [REGION] and [TEXT] columns. 
 
 The sources used were: 
- - Chronicalling America
-       -Around 200 peices of text (wasn't able to collect any more)
-       -Mainly focused on the largest states (Florida, Texas, New York)
-       -Comprised of early 19th century journals, newspapers and diaries
- -Wikipedia
-       -Around 100 articles
-       -Comprised of Global Ancient history
- -Gutenburg Project
+ * Chronicalling America
+     + Around 200 peices of text (wasn't able to collect any more)
+     + Mainly focused on the largest states (Florida, Texas, New York) since the site wouldnt allow for me to collect to much
+     + Comprised of early 19th century journals, newspapers and diaries
+     + Collected using the requests library, scrapping the webpage
+     + Code: Chronicling_america.py
+* Wikipedia
+     + Around 400 articles
+     + Comprised of Global Ancient history
+     + Collected using the wikipedia python library
+     + Code: Wikipedia_loader.py
+* Gutenburg Project
+     + Around 400 peices of text
+     + Contained Literature and Journals from the Late Middle Ages as well as text from the 1600s-1900s
+     + Fucused mainly on the Europe, the Americas, and some of Asia and Africa
+     + Collected using Beautiful Soup
+     + Code: colonial_soucebook_loader.py, gutenburg_loader.py
+ 
+### Training and Testing 
+
+To train this model I used DistilGPT-2 on the dataset (which was then eventually stored in a .csv file). I preprocessed the data by removing any rows with missing field, split the data into a training and evaluation set. 
+I tokenized the text using GPT2Tokenizer and trained the data using HuggingFace with a maximum of 1000 steps (took 3.5 hours). I then saved the model and tokenizer for later generatioon. 
+
+![image](https://github.com/user-attachments/assets/e98b1cde-1d4d-4355-8c89-ec90b58392ed)
+
+
+### Generating New Text
+
+Utilized model.generate() with sampling top_k, top_p, and temperature to promote diversity
+
+![image](https://github.com/user-attachments/assets/634b5eac-0f96-4510-9f19-f34d3ae9c68e) 
+Example of generated text using the Prompt 1800 for Year and France for Region
+
+
+## Evaluation
+
+Evaluated using BLEU and ROUGE Scores (for lexical overlap) and BERTScore (for semantic similarity). Found that while surface-level matches were quite low, semantic similarity was quite high at 0.76. 
+ 
+![image](https://github.com/user-attachments/assets/da12b653-7a78-4f5a-8822-f457d1d7ee68)
+
+  
        
