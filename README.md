@@ -16,7 +16,7 @@ The goal of this project is to develop a natural language generation model that 
 ### Data Collection
 
 In order for the model to be fluent, coherent, as well be diverse enough where it will be able to take as many user inputs as possible, I would need to gather a large dataset that includes diverse sources. 
-I did this by creating mini "loader" scripts for each of my sources, and a main "pipeline" script where I those loaders end up being used to extract and append all of the data together into one large csv file. 
+I did this by creating mini "loader" scripts for each of my sources, and a main ["pipeline"]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/nlp/pipeline.py') script where I those loaders end up being used to extract and append all of the data together into one large csv file. 
 During the process of appendage, the csv is structured such that the metadata that is collected from the loaders are placed into columns. For example, when reading an article about Ancient Rome on Wikipedia, the loader is able to extract the year, the region, and the actual text itself, all in their designated [YEAR], [REGION] and [TEXT] columns. 
 
 The sources used were: 
@@ -25,18 +25,18 @@ The sources used were:
      + Mainly focused on the largest states (Florida, Texas, New York) since the site wouldnt allow for me to collect to much
      + Comprised of early 19th century journals, newspapers and diaries
      + Collected using the requests library, scrapping the webpage
-     + Code: Chronicling_america.py
+     + Code: [Chronicling_america.py]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/nlp/chronicling_america.py')
 * Wikipedia
      + Around 400 articles
      + Comprised of Global Ancient history
      + Collected using the wikipedia python library
-     + Code: Wikipedia_loader.py
+     + Code: [Wikipedia_loader.py]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/nlp/wikipedia_loader.py')
 * Gutenburg Project
      + Around 400 peices of text
      + Contained Literature and Journals from the Late Middle Ages as well as text from the 1600s-1900s
      + Fucused mainly on the Europe, the Americas, and some of Asia and Africa
      + Collected using Beautiful Soup
-     + Code: colonial_soucebook_loader.py, gutenburg_loader.py
+     + Code: [colonial_soucebook_loader.py]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/nlp/colonial_sourcebook_loader.py'), [gutenburg_loader.py]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/nlp/gutenburg_loader.py')
  
 ### Training and Testing 
 
@@ -56,9 +56,11 @@ Example of generated text using the Prompt 1800 for Year and France for Region
 
 ## Evaluation
 
-Evaluated using BLEU and ROUGE Scores (for lexical overlap) and BERTScore (for semantic similarity). Found that while surface-level matches were quite low, semantic similarity was quite high at 0.76. 
+Evaluated using BLEU and ROUGE Scores (for lexical overlap) and BERTScore (for semantic similarity). Found that while surface-level matches were quite low, semantic similarity was moderate at 0.76. 
  
 ![image](https://github.com/user-attachments/assets/da12b653-7a78-4f5a-8822-f457d1d7ee68)
+
+Full notebook is located [here]('https://github.com/tulane-cmps6730/sp2025-historical-text/blob/main/notebooks/Hostorical_Text_Generation_Notebook.ipynb')
 
   
        
